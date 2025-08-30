@@ -85,8 +85,9 @@ export interface GoogleSearchResponse {
 }
 
 // Yelp Fusion API types
-export interface YelpSearchQuery extends SearchQuery {
+export interface YelpSearchQuery {
   apiKey: string;
+  query?: string;
   term?: string;
   location?: string;
   latitude?: number;
@@ -96,6 +97,7 @@ export interface YelpSearchQuery extends SearchQuery {
   price?: string;
   openNow?: boolean;
   sortBy?: 'best_match' | 'rating' | 'review_count' | 'distance';
+  maxResults?: number;
 }
 
 export interface YelpBusiness {

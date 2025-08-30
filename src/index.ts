@@ -1,10 +1,17 @@
 // FoodFinder AI - Main Entry Point
 export * from './types';
 export * from './utils';
+export * from './tools';
 
 // Import key components directly
 import { validateApiConfiguration } from './utils/env';
 import { createLogger } from './utils/logger';
+import { toolManager } from './tools';
+import { 
+  RestaurantSearchParams, 
+  RestaurantSearchResult, 
+  RestaurantRanking 
+} from './types';
 
 // Main application class
 export class FoodFinderAI {
