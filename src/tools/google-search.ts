@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { googleConfig } from '../utils/env';
+// import { googleConfig } from '../utils/env'; // Commented out since we switched to Perplexity
 import { logger } from '../utils/logger';
 import { 
   GoogleSearchQuery, 
@@ -104,8 +104,8 @@ export class GoogleSearchTool {
 
     return {
       query: enhancedQuery,
-      cseId: googleConfig.cseId,
-      apiKey: googleConfig.apiKey,
+      cseId: "placeholder",
+      apiKey: "placeholder",
       safeSearch: 'off'
     };
   }
@@ -207,7 +207,7 @@ export class GoogleSearchTool {
     // Create restaurant object
     const restaurant: Restaurant = {
       id: this.generateRestaurantId(item.link, name),
-      name,
+      sourceId: item.link,      name,
       address: address || 'Address not available',
       city: city || 'City not available',
       state: state || 'State not available',
@@ -480,8 +480,8 @@ export class GoogleSearchTool {
     try {
       const testQuery: GoogleSearchQuery = {
         query: 'test restaurant',
-        cseId: googleConfig.cseId,
-        apiKey: googleConfig.apiKey
+        cseId: "placeholder",
+        apiKey: "placeholder"
       };
 
       const response = await this.executeSearch(testQuery);

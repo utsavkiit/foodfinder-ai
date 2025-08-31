@@ -3,19 +3,19 @@ import { toolManager } from '../tools';
 import { logger } from '../utils/logger';
 
 export class RestaurantRecommendationAgent {
-  private model: ChatOpenAI;
+  private model?: ChatOpenAI; // Made optional since we're temporarily disabling OpenAI
   private logger = logger;
 
   constructor() {
-    // Initialize OpenAI model
-    this.model = new ChatOpenAI({
-      modelName: 'gpt-4o-mini',
-      temperature: 0.7,
-      maxTokens: 1000,
-      openAIApiKey: process.env.OPENAI_API_KEY,
-    });
+    // Initialize OpenAI model - commented out due to model access issues
+    // this.model = new ChatOpenAI({
+    //   modelName: 'gpt-3.5-turbo-instruct', // Using instruct model which is more commonly available
+    //   temperature: 0.7,
+    //   maxTokens: 1000,
+    //   openAIApiKey: process.env.OPENAI_API_KEY,
+    // });
 
-    this.logger.info('Restaurant Recommendation Agent initialized');
+    this.logger.info('Restaurant Recommendation Agent initialized (OpenAI temporarily disabled)');
   }
 
   /**
@@ -118,6 +118,11 @@ Return JSON with this structure:
 Only return valid JSON. If information is missing, use reasonable defaults.
 `;
 
+      if (!this.model) {
+        this.logger.warn('OpenAI model not available, using fallback parsing');
+        return this.parseUserInputFallback(userInput);
+      }
+      
       const response = await this.model.invoke(prompt);
       const responseText = response.content as string;
       
@@ -270,6 +275,11 @@ Please explain why these restaurants are recommended for this user. Be conversat
 `;
 
     try {
+      if (!this.model) {
+        this.logger.warn('OpenAI model not available, using fallback reasoning');
+        return this.generateReasoningFallback(preferences, recommendations);
+      }
+      
       const response = await this.model.invoke(prompt);
       return response.content as string;
     } catch (error) {
@@ -370,6 +380,11 @@ Please explain why these restaurants are recommended for this user. Be conversat
    */
   async testConnection(): Promise<boolean> {
     try {
+      if (!this.model) {
+        this.logger.warn('OpenAI model not available - temporarily disabled');
+        return false;
+      }
+      
       const response = await this.model.invoke('Hello, this is a test message.');
       return response !== undefined;
     } catch (error) {

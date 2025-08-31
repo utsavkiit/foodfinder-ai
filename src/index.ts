@@ -92,7 +92,7 @@ export class FoodFinderAI {
   }
 
   // Search with a specific tool
-  async searchWithTool(toolName: string, params: RestaurantSearchParams): Promise<RestaurantSearchResult> {
+  async searchWithTool(toolName: string, params: any): Promise<any> {
     this.logger.info(`Searching with ${toolName} tool: "${params.query}" in ${params.location}`);
     
     try {
@@ -107,7 +107,7 @@ export class FoodFinderAI {
   }
 
   // Get restaurant recommendations with ranking
-  async getRecommendations(params: RestaurantSearchParams, maxResults: number = 10): Promise<RestaurantRanking[]> {
+  async getRecommendations(params: any, maxResults: number = 10): Promise<any[]> {
     this.logger.info(`Getting recommendations for: "${params.query}" in ${params.location}`);
     
     try {

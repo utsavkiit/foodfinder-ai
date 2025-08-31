@@ -1,10 +1,10 @@
 // Export all search tools
-export { GoogleSearchTool } from './google-search';
-export { YelpSearchTool } from './yelp-search';
+export { PerplexitySearchTool } from './perplexity-search';
+// export { YelpSearchTool } from './yelp-search'; // Commented out Yelp for now
 
 // Tool factory and management
-import { GoogleSearchTool } from './google-search';
-import { YelpSearchTool } from './yelp-search';
+import { PerplexitySearchTool } from './perplexity-search';
+// import { YelpSearchTool } from './yelp-search'; // Commented out Yelp for now
 import { logger } from '../utils/logger';
 import { 
   RestaurantSearchParams, 
@@ -35,14 +35,14 @@ export class ToolManager {
   private initializeTools(): void {
     try {
       // Initialize Google Search Tool
-      const googleTool = new GoogleSearchTool();
-      this.tools.set('google', googleTool);
-      this.logger.info('Google Search Tool initialized successfully');
+      const perplexityTool = new PerplexitySearchTool();
+      this.tools.set('perplexity', perplexityTool);
+      this.logger.info('Perplexity Search Tool initialized successfully');
 
       // Initialize Yelp Search Tool
-      const yelpTool = new YelpSearchTool();
-      this.tools.set('yelp', yelpTool);
-      this.logger.info('Yelp Search Tool initialized successfully');
+      // const yelpTool = new YelpSearchTool(); // Commented out Yelp for now
+      // this.tools.set('yelp', yelpTool); // Commented out Yelp for now
+      // this.logger.info('Yelp Search Tool initialized successfully'); // Commented out Yelp for now
 
     } catch (error) {
       this.logger.error('Failed to initialize search tools', error);
@@ -246,7 +246,8 @@ export class ToolManager {
 
     // Source reliability factor (weight: 0.15)
     const sourceWeight = 0.15;
-    const sourceScore = restaurant.source === DataSource.YELP ? 1.0 : 0.8; // Yelp typically has more reliable data
+    // const sourceScore = restaurant.source === DataSource.YELP ? 1.0 : 0.8; // Yelp typically has more reliable data - Commented out Yelp for now
+    const sourceScore = restaurant.source === DataSource.PERPLEXITY ? 1.0 : 0.8; // Perplexity has reliable real-time data
     factors.push({
       name: 'Data Source',
       weight: sourceWeight,
