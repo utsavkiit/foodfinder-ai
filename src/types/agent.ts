@@ -96,6 +96,7 @@ export interface ConversationTurn {
     toolCalls?: AgentToolCall[];
     toolResults?: any[];
     confidence?: number;
+    recommendations?: string[];
   };
 }
 
