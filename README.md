@@ -20,11 +20,30 @@ An AI-powered restaurant discovery and recommendation system that uses OpenAI's 
 
 ## 📋 Prerequisites
 
-- Node.js 18+ 
-- npm or yarn
-- OpenAI API key
-- Google Custom Search API key
-- Yelp Fusion API key
+### **System Requirements**
+- **macOS**: 10.15+ (Catalina) or later
+- **Node.js**: 18+ (LTS version recommended)
+- **npm**: 8+ (comes with Node.js)
+- **Homebrew**: For easy installation on macOS
+
+### **API Keys Required**
+- **Perplexity API key** (primary data source) ✅
+- **OpenAI API key** (optional - temporarily disabled)
+- ~~Google Custom Search API key~~ (commented out)
+- ~~Yelp Fusion API key~~ (commented out)
+
+### **Installation Commands**
+```bash
+# Install Homebrew (macOS)
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Install Node.js
+brew install node
+
+# Verify installation
+node --version  # Should show v18+ or v20+
+npm --version   # Should show v8+ or v9+
+```
 
 ## 🚀 Quick Start
 
@@ -60,21 +79,29 @@ npm run cli
 Create a `.env` file with the following variables:
 
 ```env
-# OpenAI Configuration
-OPENAI_API_KEY=your_openai_api_key_here
+# Perplexity API (Primary Data Source) ✅
+PERPLEXITY_API_KEY=your_perplexity_api_key_here
 
-# Google Custom Search API
-GOOGLE_API_KEY=your_google_api_key_here
-GOOGLE_CUSTOM_SEARCH_ENGINE_ID=your_custom_search_engine_id_here
+# OpenAI Configuration (Optional - Temporarily Disabled)
+# OPENAI_API_KEY=your_openai_api_key_here
 
-# Yelp Fusion API
-YELP_API_KEY=your_yelp_api_key_here
+# Google Custom Search API (Commented Out)
+# GOOGLE_API_KEY=your_google_api_key_here
+# GOOGLE_CUSTOM_SEARCH_ENGINE_ID=your_custom_search_engine_id_here
+
+# Yelp Fusion API (Commented Out)
+# YELP_API_KEY=your_yelp_api_key_here
 
 # Application Configuration
 NODE_ENV=development
 PORT=3000
 LOG_LEVEL=info
 ```
+
+### **API Key Setup**
+1. **Perplexity API**: Get your key from [perplexity.ai](https://perplexity.ai)
+2. **OpenAI API**: Get your key from [platform.openai.com](https://platform.openai.com) (optional)
+3. **Environment File**: Copy `.env.example` to `.env` and add your keys
 
 ## 📁 Project Structure
 
